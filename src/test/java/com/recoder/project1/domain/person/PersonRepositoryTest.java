@@ -1,24 +1,38 @@
 package com.recoder.project1.domain.person;
 
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.recoder.project1.domain.person.QPerson.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class PersonRepositoryTest {
 
     @Autowired
+    private EntityManager em;
+
+    @Autowired
     PersonRepository personRepository;
+
+    private JPAQueryFactory queryFactory;
+
+    @BeforeEach
+    public void before(){
+        queryFactory = new JPAQueryFactory(em);
+    }
 
     @AfterEach
     public void cleanup(){
-        personRepository.deleteAll();
+        //personRepository.deleteAll();
     }
 
     @Test
@@ -38,7 +52,10 @@ class PersonRepositoryTest {
                 .grade(grade)
                 .build());
         //when
-        List<Person> personList = personRepository.findAll();
+        List<Person> personList = queryFactory
+                .select(person)
+                .from(person)
+                .fetch();
 
         //then
         Person person = personList.get(0);
