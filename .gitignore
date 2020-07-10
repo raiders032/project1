@@ -5,6 +5,7 @@ build/
 !**/src/main/**
 !**/src/test/**
 src/main/resources/application-real-db.properties
+/src/main/resources/application-real-db.properties
 
 ### STS ###
 .apt_generated
@@ -31,3 +32,6 @@ out/
 
 ### VS Code ###
 .vscode/
+src/main/java/com/recoder/project1/web/dto/
+src/main/resources/static/
+src/main/resources/templates/
