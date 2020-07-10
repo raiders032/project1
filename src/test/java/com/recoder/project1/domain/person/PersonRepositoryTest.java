@@ -1,16 +1,13 @@
 package com.recoder.project1.domain.person;
 
-
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.recoder.project1.web.dto.PersonResponseDto;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.recoder.project1.domain.person.QPerson.*;
