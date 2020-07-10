@@ -20,7 +20,8 @@ public class PersonService {
         return personRepository.save(requestDto.toEntity()).getId();
     }
 
-  /*  public List<Person> findAll() {
-       return  personRepository.findAllPersonCustom();
-    }*/
+    public List<PersonResponseDto> findAll() {
+        return  personRepository.findAllCustom();
+    }
+
 }

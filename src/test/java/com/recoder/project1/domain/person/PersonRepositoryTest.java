@@ -2,6 +2,7 @@ package com.recoder.project1.domain.person;
 
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.recoder.project1.web.dto.PersonResponseDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,18 +20,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 class PersonRepositoryTest {
 
-    @Autowired
-    private EntityManager em;
 
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
     private JPAQueryFactory queryFactory;
-
-    @BeforeEach
-    public void before(){
-        queryFactory = new JPAQueryFactory(em);
-    }
 
     @Test
     public void person_save(){
@@ -75,11 +70,11 @@ class PersonRepositoryTest {
                 .build());
 
         //when
-        List<Person> people = personRepository.findAllPersonCustom();
+        List<PersonResponseDto> persons = personRepository.findAllCustom();
 
         //then
-        Person person= people.get(0);
-        Assertions.assertThat(person.getEmail()).isEqualTo("123@naver.com");
-        Assertions.assertThat(people.size()).isEqualTo(2);
+        PersonResponseDto personDto= persons.get(0);
+        Assertions.assertThat(personDto.getEmail()).isEqualTo("123@naver.com");
+        Assertions.assertThat(persons.size()).isEqualTo(2);
     }
 }

@@ -1,9 +1,10 @@
 package com.recoder.project1.domain.person;
 
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.recoder.project1.web.dto.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.recoder.project1.domain.person.QPerson.*;
@@ -14,10 +15,16 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
     private final  JPAQueryFactory queryFactory;
 
     @Override
-    public List<Person> findAllPersonCustom() {
-        List<Person> people = queryFactory.select(person)
+    public List<PersonResponseDto> findAllCustom() {
+        return queryFactory.select(Projections.fields(PersonResponseDto.class,
+                    person.sex,
+                    person.id,
+                    person.grade,
+                    person.email,
+                    person.nickname,
+                    person.age
+                ))
                 .from(person)
                 .fetch();
-        return people;
     }
 }

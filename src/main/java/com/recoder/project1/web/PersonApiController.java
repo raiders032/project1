@@ -19,12 +19,12 @@ public class PersonApiController {
     private final PersonService personService;
 
     @PostMapping("/api/v1/person")
-    public Long person(@RequestBody PersonSaveRequestDto requestDto){
+    public Long save_person(@RequestBody PersonSaveRequestDto requestDto){
         return personService.save(requestDto);
     }
-/*
+
     @GetMapping("/api/v1/person")
-    public List<Person> person_list(){
+    public List<PersonResponseDto> person_list(){
         return personService.findAll();
-    }*/
+    }
 }
