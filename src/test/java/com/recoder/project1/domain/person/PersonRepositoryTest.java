@@ -2,21 +2,23 @@ package com.recoder.project1.domain.person;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.recoder.project1.web.dto.PersonResponseDto;
-import org.assertj.core.api.Assertions;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static com.recoder.project1.domain.person.QPerson.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-@SpringBootTest
 @Transactional
-class PersonRepositoryTest {
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class PersonRepositoryTest {
 
     @Autowired
     PersonRepository personRepository;
@@ -71,7 +73,7 @@ class PersonRepositoryTest {
 
         //then
         PersonResponseDto personDto= persons.get(0);
-        Assertions.assertThat(personDto.getEmail()).isEqualTo("123@naver.com");
-        Assertions.assertThat(persons.size()).isEqualTo(2);
+        assertThat(personDto.getEmail()).isEqualTo("123@naver.com");
+        assertThat(persons.size()).isEqualTo(2);
     }
 }
