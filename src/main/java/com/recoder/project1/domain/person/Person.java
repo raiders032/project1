@@ -1,11 +1,14 @@
 package com.recoder.project1.domain.person;
 
+import com.recoder.project1.domain.categoty.Category;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -16,6 +19,12 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     private Long id;
+
+    @OneToMany(mappedBy = "person")
+    List<PersonCategory> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "person")
+    List<Bookmark> bookmarks = new ArrayList<>();
 
     @Column(unique = true)
     private String email;

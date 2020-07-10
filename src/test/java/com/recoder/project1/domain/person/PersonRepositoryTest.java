@@ -2,11 +2,12 @@ package com.recoder.project1.domain.person;
 
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.junit.jupiter.api.AfterEach;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -15,6 +16,7 @@ import static com.recoder.project1.domain.person.QPerson.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
 class PersonRepositoryTest {
 
     @Autowired
@@ -28,11 +30,6 @@ class PersonRepositoryTest {
     @BeforeEach
     public void before(){
         queryFactory = new JPAQueryFactory(em);
-    }
-
-    @AfterEach
-    public void cleanup(){
-        //personRepository.deleteAll();
     }
 
     @Test
@@ -67,5 +64,22 @@ class PersonRepositoryTest {
 
     }
 
+    @Test
+    public void find_all_person_custom(){
+        //given
+        Person person1 = personRepository.save(Person.builder()
+                .email("123@naver.com")
+                .build());
+        Person person2 = personRepository.save(Person.builder()
+                .email("456@naver.com")
+                .build());
 
+        //when
+        List<Person> people = personRepository.findAllPersonCustom();
+
+        //then
+        Person person= people.get(0);
+        Assertions.assertThat(person.getEmail()).isEqualTo("123@naver.com");
+        Assertions.assertThat(people.size()).isEqualTo(2);
+    }
 }
