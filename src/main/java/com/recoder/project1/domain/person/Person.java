@@ -34,7 +34,7 @@ public class Person {
 
     private int age;
 
-    private String grade;
+    private String grade ="우유 1단";
 
     @Builder
     public Person(String email, String nickname, String sex, int age, String grade) {
