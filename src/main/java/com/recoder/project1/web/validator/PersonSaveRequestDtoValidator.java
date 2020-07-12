@@ -24,5 +24,8 @@ public class PersonSaveRequestDtoValidator implements Validator {
         if(personRepository.existsByEmail(requestDto.getEmail())){
             errors.rejectValue("email","wrong.email","중복되는 email입니다");
         }
+        if(personRepository.existsByNickname(requestDto.getNickname())){
+            errors.rejectValue("nickname","wrong.nickname","중복되는 nickname입니다");
+        }
     }
 }

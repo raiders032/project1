@@ -47,7 +47,7 @@ public class PersonApiControllerTest {
 
     @Test
     @WithMockUser(roles="USER")
-    public void save_person_duplicate() throws Exception {
+    public void save_person_duplicate_email() throws Exception {
         //given
         PersonSaveRequestDto requestDto1 = PersonSaveRequestDto.builder()
                 .email("nys1@naver.com")
@@ -64,7 +64,40 @@ public class PersonApiControllerTest {
         mvc.perform(post("/api/v1/person")
             .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto1)))
-                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(status().isOk());
+
+        mvc.perform(post("/api/v1/person")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto2)))
+                .andExpect(jsonPath("$.id").isEmpty())
+                .andDo(print())
+                .andExpect(status().isOk());
+        //then
+        List<Person> all = personRepository.findAll();
+        Assertions.assertThat(all.size()).isEqualTo(1);
+    }
+
+    @Test
+    @WithMockUser(roles="USER")
+    public void save_person_duplicate_nickname() throws Exception {
+        //given
+        PersonSaveRequestDto requestDto1 = PersonSaveRequestDto.builder()
+                .email("nys1@naver123.com")
+                .nickname("kim")
+                .build();
+        PersonSaveRequestDto requestDto2 = PersonSaveRequestDto.builder()
+                .email("nys1@naver.com")
+                .nickname("kim")
+                .build();
+
+        String url = "http://localhost:"+port+"/api/v1/posts";
+
+        //when
+        mvc.perform(post("/api/v1/person")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto1)))
+                .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(status().isOk());
 
         mvc.perform(post("/api/v1/person")
