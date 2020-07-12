@@ -1,4 +1,4 @@
-package com.recoder.project1.domain.person;
+package com.recoder.project1.domain.user;
 
 import com.recoder.project1.domain.restaurant.Restaurant;
 import lombok.AccessLevel;
@@ -16,8 +16,8 @@ public class Bookmark {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")

@@ -1,7 +1,6 @@
-package com.recoder.project1.web.person.dto;
+package com.recoder.project1.web.user.dto;
 
-import com.recoder.project1.domain.person.Person;
-import lombok.AllArgsConstructor;
+import com.recoder.project1.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @NoArgsConstructor
-public class PersonSaveRequestDto {
+public class UserSaveRequestDto {
 
     @NotBlank(message = "email 형식을 지켜주세요")
     @Email
@@ -28,8 +27,8 @@ public class PersonSaveRequestDto {
 
     private int age;
 
-    public Person toEntity(){
-        return Person.builder()
+    public User toEntity(){
+        return User.builder()
                 .email(email)
                 .sex(sex)
                 .nickname(nickname)
@@ -38,7 +37,7 @@ public class PersonSaveRequestDto {
     }
 
     @Builder
-    public PersonSaveRequestDto(@NotBlank(message = "email 형식을 지켜주세요") @Email String email, @Length(min = 3, max = 20, message = "최소 3 최대 20글자만 가능") @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9_-]{3,20}$", message = "특수문자 ㄴㄴ") @NotBlank(message = "nickname을 입력해 주세요") String nickname, String sex, int age) {
+    public UserSaveRequestDto(@NotBlank(message = "email 형식을 지켜주세요") @Email String email, @Length(min = 3, max = 20, message = "최소 3 최대 20글자만 가능") @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9_-]{3,20}$", message = "특수문자 ㄴㄴ") @NotBlank(message = "nickname을 입력해 주세요") String nickname, String sex, int age) {
         this.email = email;
         this.nickname = nickname;
         this.sex = sex;

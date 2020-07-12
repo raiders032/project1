@@ -2,9 +2,9 @@ package com.recoder.project1.web;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.recoder.project1.domain.person.Person;
-import com.recoder.project1.domain.person.PersonRepository;
-import com.recoder.project1.web.person.dto.PersonSaveRequestDto;
+import com.recoder.project1.domain.user.User;
+import com.recoder.project1.domain.user.UserRepository;
+import com.recoder.project1.web.user.dto.UserSaveRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,12 +33,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonApiControllerTest {
+public class UserApiControllerTest {
 
-    @Autowired private PersonApiController personApiController;
+    @Autowired private UserApiController userApiController;
     @Autowired private WebApplicationContext context;
     @LocalServerPort private int port;
-    @Autowired private PersonRepository personRepository;
+    @Autowired private UserRepository userRepository;
     private MockMvc mvc;
 
     @Before
@@ -50,11 +50,11 @@ public class PersonApiControllerTest {
     @WithMockUser(roles="USER")
     public void save_person_duplicate_email() throws Exception {
         //given
-        PersonSaveRequestDto requestDto1 = PersonSaveRequestDto.builder()
+        UserSaveRequestDto requestDto1 = UserSaveRequestDto.builder()
                 .email("nys1@naver.com")
                 .nickname("kim")
                 .build();
-        PersonSaveRequestDto requestDto2 = PersonSaveRequestDto.builder()
+        UserSaveRequestDto requestDto2 = UserSaveRequestDto.builder()
                 .email("nys1@naver.com")
                 .nickname("kim2")
                 .build();
@@ -75,7 +75,7 @@ public class PersonApiControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
         //then
-        List<Person> all = personRepository.findAll();
+        List<User> all = userRepository.findAll();
         Assertions.assertThat(all.size()).isEqualTo(1);
     }
 
@@ -83,11 +83,11 @@ public class PersonApiControllerTest {
     @WithMockUser(roles="USER")
     public void save_person_duplicate_nickname() throws Exception {
         //given
-        PersonSaveRequestDto requestDto1 = PersonSaveRequestDto.builder()
+        UserSaveRequestDto requestDto1 = UserSaveRequestDto.builder()
                 .email("nys1@naver123.com")
                 .nickname("kim")
                 .build();
-        PersonSaveRequestDto requestDto2 = PersonSaveRequestDto.builder()
+        UserSaveRequestDto requestDto2 = UserSaveRequestDto.builder()
                 .email("nys1@naver.com")
                 .nickname("kim")
                 .build();
@@ -108,7 +108,7 @@ public class PersonApiControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
         //then
-        List<Person> all = personRepository.findAll();
+        List<User> all = userRepository.findAll();
         Assertions.assertThat(all.size()).isEqualTo(1);
 
     }

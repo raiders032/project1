@@ -1,7 +1,9 @@
 package com.recoder.project1.domain.person;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.recoder.project1.web.person.dto.PersonResponseDto;
+import com.recoder.project1.domain.user.User;
+import com.recoder.project1.domain.user.UserRepository;
+import com.recoder.project1.web.user.dto.UserResponseDto;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,16 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.recoder.project1.domain.person.QPerson.*;
+
+import static com.recoder.project1.domain.user.QUser.*;
 import static org.assertj.core.api.Assertions.*;
 
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PersonRepositoryTest {
+public class UserRepositoryTest {
 
     @Autowired
-    PersonRepository personRepository;
+    UserRepository userRepository;
 
     @Autowired
     private JPAQueryFactory queryFactory;
@@ -35,7 +38,7 @@ public class PersonRepositoryTest {
         String grade = "1단";
         String sex = "남자";
 
-        personRepository.save(Person.builder()
+        userRepository.save(User.builder()
                 .age(age)
                 .email(email)
                 .nickname(nickname)
@@ -43,36 +46,36 @@ public class PersonRepositoryTest {
                 .grade(grade)
                 .build());
         //when
-        List<Person> personList = queryFactory
-                .select(person)
-                .from(person)
+        List<User> userList = queryFactory
+                .select(user)
+                .from(user)
                 .fetch();
 
         //then
-        Person person = personList.get(0);
-        assertThat(person.getNickname()).isEqualTo(nickname);
-        assertThat(person.getAge()).isEqualTo(age);
-        assertThat(person.getEmail()).isEqualTo(email);
-        assertThat(person.getGrade()).isEqualTo(grade);
-        assertThat(person.getSex()).isEqualTo(sex);
+        User user = userList.get(0);
+        assertThat(user.getNickname()).isEqualTo(nickname);
+        assertThat(user.getAge()).isEqualTo(age);
+        assertThat(user.getEmail()).isEqualTo(email);
+        assertThat(user.getGrade()).isEqualTo(grade);
+        assertThat(user.getSex()).isEqualTo(sex);
 
     }
 
     @Test
     public void find_all_person_custom(){
         //given
-        Person person1 = personRepository.save(Person.builder()
+        User user1 = userRepository.save(User.builder()
                 .email("123@naver.com")
                 .build());
-        Person person2 = personRepository.save(Person.builder()
+        User user2 = userRepository.save(User.builder()
                 .email("456@naver.com")
                 .build());
 
         //when
-        List<PersonResponseDto> persons = personRepository.findAllCustom();
+        List<UserResponseDto> persons = userRepository.findAllCustom();
 
         //then
-        PersonResponseDto personDto= persons.get(0);
+        UserResponseDto personDto= persons.get(0);
         assertThat(personDto.getEmail()).isEqualTo("123@naver.com");
         assertThat(persons.size()).isEqualTo(2);
     }

@@ -1,4 +1,4 @@
-package com.recoder.project1.domain.person;
+package com.recoder.project1.domain.user;
 
 import com.recoder.project1.domain.categoty.Category;
 import lombok.AccessLevel;
@@ -10,14 +10,14 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class PersonCategory {
+public class UserCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

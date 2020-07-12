@@ -1,26 +1,25 @@
-package com.recoder.project1.web.person.dto;
+package com.recoder.project1.web.user.dto;
 
-import com.recoder.project1.domain.person.Person;
+import com.recoder.project1.domain.user.User;
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.FieldError;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class PersonSaveResponse {
+public class UserSaveResponse {
     @ApiParam(value = "person 객체", required = true)
-    private Person person;
+    private User user;
     private List<FieldError> errors;
 
-    public PersonSaveResponse(List<FieldError> errors) {
+    public UserSaveResponse(List<FieldError> errors) {
         this.errors = errors;
     }
 
-    public PersonSaveResponse(Person person) {
-        this.person = person;
+    public UserSaveResponse(User user) {
+        this.user = user;
     }
 }

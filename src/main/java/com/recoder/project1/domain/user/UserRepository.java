@@ -1,8 +1,8 @@
-package com.recoder.project1.domain.person;
+package com.recoder.project1.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PersonRepository extends JpaRepository<Person,Long>, PersonRepositoryCustom{
+public interface UserRepository extends JpaRepository<User,Long>, UserRepositoryCustom {
 
     boolean existsByEmail(String email);
 
