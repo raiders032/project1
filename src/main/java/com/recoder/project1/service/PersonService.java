@@ -1,9 +1,9 @@
 package com.recoder.project1.service;
 
 import com.recoder.project1.domain.person.PersonRepository;
-import com.recoder.project1.web.dto.PersonSaveRequestDto;
-import com.recoder.project1.web.dto.PersonResponseDto;
-import com.recoder.project1.web.dto.PersonSaveResponse;
+import com.recoder.project1.web.person.dto.PersonSaveRequestDto;
+import com.recoder.project1.web.person.dto.PersonResponseDto;
+import com.recoder.project1.web.person.dto.PersonSaveResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,7 @@ public class PersonService {
     private final PersonRepository personRepository;
 
     public PersonSaveResponse save(PersonSaveRequestDto requestDto) {
-        Long id = personRepository.save(requestDto.toEntity()).getId();
-        return new PersonSaveResponse(id);
+        return new PersonSaveResponse(personRepository.save(requestDto.toEntity()));
     }
 
     public List<PersonResponseDto> findAll() {

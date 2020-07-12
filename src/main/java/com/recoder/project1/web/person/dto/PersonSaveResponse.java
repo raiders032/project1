@@ -1,5 +1,6 @@
-package com.recoder.project1.web.dto;
+package com.recoder.project1.web.person.dto;
 
+import com.recoder.project1.domain.person.Person;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.validation.FieldError;
@@ -10,15 +11,14 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class PersonSaveResponse {
-    Long id;
-    List<FieldError> errors;
+    private Person person;
+    private List<FieldError> errors;
 
     public PersonSaveResponse(List<FieldError> errors) {
         this.errors = errors;
     }
 
-    public PersonSaveResponse(Long id) {
-        this.id = id;
+    public PersonSaveResponse(Person person) {
+        this.person = person;
     }
-
 }

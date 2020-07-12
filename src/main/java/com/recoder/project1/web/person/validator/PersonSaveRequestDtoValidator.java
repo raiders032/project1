@@ -1,7 +1,7 @@
-package com.recoder.project1.web.validator;
+package com.recoder.project1.web.person.validator;
 
 import com.recoder.project1.domain.person.PersonRepository;
-import com.recoder.project1.web.dto.PersonSaveRequestDto;
+import com.recoder.project1.web.person.dto.PersonSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -1,6 +1,6 @@
 package com.recoder.project1.domain.person;
 
-import com.recoder.project1.web.dto.PersonResponseDto;
+import com.recoder.project1.web.person.dto.PersonResponseDto;
 
 import java.util.List;
 

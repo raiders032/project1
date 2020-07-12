@@ -1,7 +1,7 @@
 package com.recoder.project1.domain.person;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.recoder.project1.web.dto.PersonResponseDto;
+import com.recoder.project1.web.person.dto.PersonResponseDto;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

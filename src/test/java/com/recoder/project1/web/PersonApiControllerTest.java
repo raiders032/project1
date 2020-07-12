@@ -4,7 +4,8 @@ package com.recoder.project1.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recoder.project1.domain.person.Person;
 import com.recoder.project1.domain.person.PersonRepository;
-import com.recoder.project1.web.dto.PersonSaveRequestDto;
+import com.recoder.project1.web.person.PersonApiController;
+import com.recoder.project1.web.person.dto.PersonSaveRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,13 +65,13 @@ public class PersonApiControllerTest {
         mvc.perform(post("/api/v1/person")
             .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto1)))
-                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.person").isNotEmpty())
                 .andExpect(status().isOk());
 
         mvc.perform(post("/api/v1/person")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto2)))
-                .andExpect(jsonPath("$.id").isEmpty())
+                .andExpect(jsonPath("$.person").isEmpty())
                 .andDo(print())
                 .andExpect(status().isOk());
         //then
@@ -97,13 +98,13 @@ public class PersonApiControllerTest {
         mvc.perform(post("/api/v1/person")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto1)))
-                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.person").isNotEmpty())
                 .andExpect(status().isOk());
 
         mvc.perform(post("/api/v1/person")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto2)))
-                .andExpect(jsonPath("$.id").isEmpty())
+                .andExpect(jsonPath("$.person").isEmpty())
                 .andDo(print())
                 .andExpect(status().isOk());
         //then

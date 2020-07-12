@@ -1,13 +1,12 @@
-package com.recoder.project1.web;
+package com.recoder.project1.web.person;
 
 import com.recoder.project1.service.PersonService;
-import com.recoder.project1.web.dto.PersonResponseDto;
-import com.recoder.project1.web.dto.PersonSaveRequestDto;
-import com.recoder.project1.web.dto.PersonSaveResponse;
-import com.recoder.project1.web.validator.PersonSaveRequestDtoValidator;
+import com.recoder.project1.web.person.dto.PersonResponseDto;
+import com.recoder.project1.web.person.dto.PersonSaveRequestDto;
+import com.recoder.project1.web.person.dto.PersonSaveResponse;
+import com.recoder.project1.web.person.validator.PersonSaveRequestDtoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 

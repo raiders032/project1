@@ -1,4 +1,4 @@
-package com.recoder.project1.web.dto;
+package com.recoder.project1.web.person.dto;
 
 import com.recoder.project1.domain.person.Person;
 import lombok.AllArgsConstructor;
