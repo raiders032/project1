@@ -4,7 +4,6 @@ package com.recoder.project1.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recoder.project1.domain.person.Person;
 import com.recoder.project1.domain.person.PersonRepository;
-import com.recoder.project1.web.person.PersonApiController;
 import com.recoder.project1.web.person.dto.PersonSaveRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -29,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @Transactional
 @RunWith(SpringRunner.class)
