@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 import static com.recoder.project1.domain.user.QUser.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -83,4 +82,5 @@ public class UserRepositoryTest {
         assertThat(personDto.getEmail()).isEqualTo("123@naver.com");
         assertThat(persons.size()).isEqualTo(2);
     }
+
 }

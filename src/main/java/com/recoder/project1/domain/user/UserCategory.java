@@ -1,6 +1,7 @@
 package com.recoder.project1.domain.user;
 
 
+import com.recoder.project1.domain.BaseTimeEntity;
 import com.recoder.project1.domain.category.Category;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class UserCategory {
+public class UserCategory extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_category_id")

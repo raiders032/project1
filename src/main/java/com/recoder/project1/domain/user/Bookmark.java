@@ -1,5 +1,6 @@
 package com.recoder.project1.domain.user;
 
+import com.recoder.project1.domain.BaseTimeEntity;
 import com.recoder.project1.domain.restaurant.Restaurant;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Bookmark {
+public class Bookmark extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
