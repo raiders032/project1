@@ -1,6 +1,7 @@
 package com.recoder.project1.domain.person;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.recoder.project1.domain.user.Role;
 import com.recoder.project1.domain.user.User;
 import com.recoder.project1.domain.user.UserRepository;
 import com.recoder.project1.web.user.dto.UserResponseDto;
@@ -41,6 +42,7 @@ public class UserRepositoryTest {
         userRepository.save(User.builder()
                 .age(age)
                 .email(email)
+                .role(Role.GUEST)
                 .nickname(nickname)
                 .sex(sex)
                 .grade(grade)
@@ -65,9 +67,11 @@ public class UserRepositoryTest {
     public void find_all_person_custom(){
         //given
         User user1 = userRepository.save(User.builder()
+                .role(Role.GUEST)
                 .email("123@naver.com")
                 .build());
         User user2 = userRepository.save(User.builder()
+                .role(Role.GUEST)
                 .email("456@naver.com")
                 .build());
 

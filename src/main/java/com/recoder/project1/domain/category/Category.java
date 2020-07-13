@@ -1,4 +1,4 @@
-package com.recoder.project1.domain.categoty;
+package com.recoder.project1.domain.category;
 
 import lombok.AccessLevel;
 import lombok.Getter;

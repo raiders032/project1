@@ -1,6 +1,6 @@
 package com.recoder.project1.domain.restaurant;
 
-import com.recoder.project1.domain.categoty.Category;
+import com.recoder.project1.domain.category.Category;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

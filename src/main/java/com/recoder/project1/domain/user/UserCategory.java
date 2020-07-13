@@ -1,6 +1,7 @@
 package com.recoder.project1.domain.user;
 
-import com.recoder.project1.domain.categoty.Category;
+
+import com.recoder.project1.domain.category.Category;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 public class UserCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_category_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
