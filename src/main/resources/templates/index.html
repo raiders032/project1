@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+    <h1>스프링부트로 시작하는 웹 서비스</h1>
+    <div class="col-md-12">
+                <a href="/oauth2/authorization/google" >Google login</a>
+                <a href="/oauth2/authorization/naver">Naver login</a>
+    </div>
+    <div  th:if="${userName != null}">
+        <p th:text="${userName}">your@email.com</p>
+    </div>
+</body>
+</html>

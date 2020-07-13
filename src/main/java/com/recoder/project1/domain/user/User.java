@@ -30,18 +30,35 @@ public class User {
     @Column(unique = true)
     private String nickname;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     private String sex;
 
     private int age;
 
     private String grade ="우유 1단";
 
+    private String picture;
+
     @Builder
-    public User(String email, String nickname, String sex, int age, String grade) {
+    public User(String email, String nickname, String sex, int age, String grade, String picture, Role role) {
         this.email=email;
         this.nickname=nickname;
         this.sex=sex;
         this.age=age;
         this.grade=grade;
+        this.picture=picture;
+        this.role=role;
+    }
+    public User update(String name, String picture){
+        this.nickname=name;
+        this.picture=picture;
+        return this;
+    }
+
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 }

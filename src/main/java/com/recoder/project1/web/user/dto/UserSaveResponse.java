@@ -1,6 +1,6 @@
 package com.recoder.project1.web.user.dto;
 
-import com.recoder.project1.domain.user.User;
+import com.recoder.project1.auth.dto.SessionUser;
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 public class UserSaveResponse {
     @ApiParam(value = "person 객체", required = true)
-    private User user;
+    private SessionUser sessionUser;
     private List<FieldError> errors;
 
     public UserSaveResponse(List<FieldError> errors) {
         this.errors = errors;
     }
 
-    public UserSaveResponse(User user) {
-        this.user = user;
+    public UserSaveResponse(SessionUser sessionUser) {
+        this.sessionUser = sessionUser;
     }
 }

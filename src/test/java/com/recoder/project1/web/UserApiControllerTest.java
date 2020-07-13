@@ -62,16 +62,16 @@ public class UserApiControllerTest {
         String url = "http://localhost:"+port+"/api/v1/posts";
 
         //when
-        mvc.perform(post("/api/v1/person")
+        mvc.perform(post("/api/v1/user")
             .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto1)))
-                .andExpect(jsonPath("$.person").isNotEmpty())
+                .andExpect(jsonPath("$.sessionUser").isNotEmpty())
                 .andExpect(status().isOk());
 
-        mvc.perform(post("/api/v1/person")
+        mvc.perform(post("/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto2)))
-                .andExpect(jsonPath("$.person").isEmpty())
+                .andExpect(jsonPath("$.sessionUser").isEmpty())
                 .andDo(print())
                 .andExpect(status().isOk());
         //then
@@ -95,16 +95,16 @@ public class UserApiControllerTest {
         String url = "http://localhost:"+port+"/api/v1/posts";
 
         //when
-        mvc.perform(post("/api/v1/person")
+        mvc.perform(post("/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto1)))
-                .andExpect(jsonPath("$.person").isNotEmpty())
+                .andExpect(jsonPath("$.sessionUser").isNotEmpty())
                 .andExpect(status().isOk());
 
-        mvc.perform(post("/api/v1/person")
+        mvc.perform(post("/api/v1/user")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto2)))
-                .andExpect(jsonPath("$.person").isEmpty())
+                .andExpect(jsonPath("$.sessionUser").isEmpty())
                 .andDo(print())
                 .andExpect(status().isOk());
         //then
